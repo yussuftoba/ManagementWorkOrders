@@ -1,0 +1,565 @@
+[
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.AccountController",
+    "Method": "Login",
+    "RelativePath": "api/Account/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDTO",
+        "Type": "ManagementWorkOrdersAPI.DTO.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.AccountController",
+    "Method": "GetLogOut",
+    "RelativePath": "api/Account/LogOut",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.AccountController",
+    "Method": "Register",
+    "RelativePath": "api/Account/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registerDTO",
+        "Type": "ManagementWorkOrdersAPI.DTO.RegisterDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ApprovalController",
+    "Method": "GetAllApproval",
+    "RelativePath": "api/Approval/GetAllApproval",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ApprovalController",
+    "Method": "UploadApproval",
+    "RelativePath": "api/Approval/UploadApproval",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.CertificateController",
+    "Method": "CreateCertificate",
+    "RelativePath": "api/Certificate/CreateCertificate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "certificateDTO",
+        "Type": "DTO.CreateCertificateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.CertificateController",
+    "Method": "DeleteCertificate",
+    "RelativePath": "api/Certificate/DeleteCertificate/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.CertificateController",
+    "Method": "GetAllCertificates",
+    "RelativePath": "api/Certificate/GetAllCertificates",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.CertificateController",
+    "Method": "GetCertificateById",
+    "RelativePath": "api/Certificate/GetCertificateById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.CertificateController",
+    "Method": "SearchByBasketNameOrWorkOrderNumber",
+    "RelativePath": "api/Certificate/SearchByBasketNameOrWorkOrderNumber",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "searchTerm",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.CertificateController",
+    "Method": "Summary",
+    "RelativePath": "api/Certificate/Summary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.CertificateController",
+    "Method": "UpdateCertificate",
+    "RelativePath": "api/Certificate/UpdateCertificate/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "certificateDTO",
+        "Type": "DTO.CreateCertificateDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.CertificateController",
+    "Method": "UploadCertificates",
+    "RelativePath": "api/Certificate/UploadCertificates",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ExtractController",
+    "Method": "CreateExtract",
+    "RelativePath": "api/Extract/CreateExtract",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createDTO",
+        "Type": "DTO.CreateExtractDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ExtractController",
+    "Method": "DeleteExtract",
+    "RelativePath": "api/Extract/DeleteExtract/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ExtractController",
+    "Method": "GetAllExtracts",
+    "RelativePath": "api/Extract/GetAllExtracts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ExtractController",
+    "Method": "GetExtractById",
+    "RelativePath": "api/Extract/GetExtractById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ExtractController",
+    "Method": "Summary",
+    "RelativePath": "api/Extract/Summary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ExtractController",
+    "Method": "UpdateExtract",
+    "RelativePath": "api/Extract/UpdateExtract/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "createDTO",
+        "Type": "DTO.CreateExtractDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ExtractController",
+    "Method": "UploadExtract",
+    "RelativePath": "api/Extract/UploadExtract",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ReportController",
+    "Method": "ApprovalReport",
+    "RelativePath": "api/Report/ApprovalReport",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ReportController",
+    "Method": "CertificateReportByDisposalStatus",
+    "RelativePath": "api/Report/CertificateReportByDisposalStatus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ReportController",
+    "Method": "CertificateReportByPaymentStatus",
+    "RelativePath": "api/Report/CertificateReportByPaymentStatus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ReportController",
+    "Method": "CertificateReportByReturnStatus",
+    "RelativePath": "api/Report/CertificateReportByReturnStatus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ReportController",
+    "Method": "CertificateReportByWasteStatus",
+    "RelativePath": "api/Report/CertificateReportByWasteStatus",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ReportController",
+    "Method": "ExtractsReportByDepartment",
+    "RelativePath": "api/Report/ExtractsReportByDepartment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ReportController",
+    "Method": "ExtractsReportByType",
+    "RelativePath": "api/Report/ExtractsReportByType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ReportController",
+    "Method": "GetWorkOrdersAllMonthsPerYear",
+    "RelativePath": "api/Report/GetWorkOrdersAllMonthsPerYear",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "year",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ReportController",
+    "Method": "GetWorkOrdersByDepartment",
+    "RelativePath": "api/Report/GetWorkOrdersByDepartment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "department",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ReportController",
+    "Method": "GetWorkOrdersByType",
+    "RelativePath": "api/Report/GetWorkOrdersByType",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.ReportController",
+    "Method": "WorkOrderReportByDate",
+    "RelativePath": "api/Report/WorkOrderReportByDate",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fromDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "toDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.WorkOrdersController",
+    "Method": "CreateWorkOrder",
+    "RelativePath": "api/WorkOrders/CreateWorkOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workOrderDTO",
+        "Type": "DTO.CreateWorkOrderDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.WorkOrdersController",
+    "Method": "DeleteWorkOrder",
+    "RelativePath": "api/WorkOrders/DeleteWorkOrder/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.WorkOrdersController",
+    "Method": "GetAllWorkOrders",
+    "RelativePath": "api/WorkOrders/GetAllWorkOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.WorkOrdersController",
+    "Method": "GetWorkOrderById",
+    "RelativePath": "api/WorkOrders/GetWorkOrderById/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.WorkOrdersController",
+    "Method": "GetWorkOrdersSummary",
+    "RelativePath": "api/WorkOrders/GetWorkOrdersSummary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.WorkOrdersController",
+    "Method": "Search",
+    "RelativePath": "api/WorkOrders/Search",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "workOrderNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "fromDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "toDate",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.WorkOrdersController",
+    "Method": "UpdateWorkOrder",
+    "RelativePath": "api/WorkOrders/UpdateWorkOrder/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "workOrderDTO",
+        "Type": "DTO.CreateWorkOrderDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ManagementWorkOrdersAPI.Controllers.WorkOrdersController",
+    "Method": "UploadWorkOrder",
+    "RelativePath": "api/WorkOrders/UploadWorkOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

@@ -1,0 +1,144 @@
+﻿using Identity;
+using IServices;
+using ManagementWorkOrdersAPI.DTO;
+using ManagementWorkOrdersAPI.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ManagementWorkOrdersAPI.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AccountController : APIBaseController
+    {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IJWTService _jwtService;
+
+        public AccountController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, SignInManager<ApplicationUser> signInManager, IJWTService jwtService) : base(unitOfWork)
+        {
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _signInManager = signInManager;
+            _jwtService = jwtService;
+        }
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> Register(RegisterDTO registerDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(registerDTO.Email);
+
+                if (user == null)
+                {
+                    var applicationUser = new ApplicationUser()
+                    {
+                        Email = registerDTO.Email,
+                        PhoneNumber = registerDTO.PhoneNumber,
+                        UserName = registerDTO.Email,
+                        PersonName = registerDTO.PersonName
+                    };
+
+                    var result = await _userManager.CreateAsync(applicationUser, registerDTO.Password);
+
+                    if (result.Succeeded)
+                    {
+                        if (registerDTO.UserType.ToLower() == "admin")
+                        {
+                            if (await _roleManager.FindByNameAsync("admin") is null)
+                            {
+                                var role = new ApplicationRole()
+                                {
+                                    Name = "admin"
+                                };
+
+                                await _roleManager.CreateAsync(role);
+                            }
+
+                            await _userManager.AddToRoleAsync(applicationUser, "admin");
+                        }
+                        else if(registerDTO.UserType.ToLower() == "viewer")
+                        {
+                            if (await _roleManager.FindByNameAsync("viewer") is null)
+                            {
+                                var role = new ApplicationRole()
+                                {
+                                    Name = "viewer"
+                                };
+
+                                await _roleManager.CreateAsync(role);
+                            }
+
+                            await _userManager.AddToRoleAsync(applicationUser, "viewer");
+                        }
+
+                        //sign in
+                        await _signInManager.SignInAsync(applicationUser, isPersistent: false);
+
+                        var token = await _jwtService.CreateJwtToken(applicationUser);
+
+                        return Ok(token);
+                    }
+                    else
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("Register", error.Description);
+                        }
+                    }
+                }
+                return BadRequest("This email is already existing");
+            }
+
+            return BadRequest(ModelState);
+        }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(LoginDTO loginDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(loginDTO.Email);
+
+                if (user != null)
+                {
+                    var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, isPersistent: false, lockoutOnFailure: false);
+
+                    if (result.Succeeded)
+                    {
+
+                        if (user == null)
+                        {
+                            return NotFound();
+                        }
+
+                        //sign in
+
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+
+                        var token = await _jwtService.CreateJwtToken(user);
+
+                        return Ok(token);
+                    }
+                }
+                return BadRequest("Invalid Email or Password");
+            }
+
+            return BadRequest(ModelState);
+        }
+
+        [Authorize]
+        [HttpGet("LogOut")]
+        public async Task<IActionResult> GetLogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return NoContent();
+        }
+
+
+    }
+}
