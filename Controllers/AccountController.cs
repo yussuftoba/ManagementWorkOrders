@@ -1,4 +1,5 @@
-﻿using Identity;
+﻿using DTO;
+using Identity;
 using IServices;
 using ManagementWorkOrdersAPI.DTO;
 using ManagementWorkOrdersAPI.Identity;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Services;
 
 namespace ManagementWorkOrdersAPI.Controllers
 {
@@ -17,13 +19,15 @@ namespace ManagementWorkOrdersAPI.Controllers
         private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IJWTService _jwtService;
+        private readonly EmailSender _emailSender;
 
-        public AccountController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, SignInManager<ApplicationUser> signInManager, IJWTService jwtService) : base(unitOfWork)
+        public AccountController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager, SignInManager<ApplicationUser> signInManager, IJWTService jwtService, EmailSender emailSender) : base(unitOfWork)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
             _jwtService = jwtService;
+            _emailSender = emailSender;
         }
 
         [HttpPost("Register")]
@@ -40,14 +44,14 @@ namespace ManagementWorkOrdersAPI.Controllers
                         Email = registerDTO.Email,
                         PhoneNumber = registerDTO.PhoneNumber,
                         UserName = registerDTO.Email,
-                        PersonName = registerDTO.PersonName
+                        PersonName = registerDTO.PersonName.Replace(" admin", "")
                     };
 
                     var result = await _userManager.CreateAsync(applicationUser, registerDTO.Password);
 
                     if (result.Succeeded)
                     {
-                        if (registerDTO.UserType.ToLower() == "admin")
+                        if (registerDTO.PersonName.ToLower().Contains("admin"))
                         {
                             if (await _roleManager.FindByNameAsync("admin") is null)
                             {
@@ -61,7 +65,7 @@ namespace ManagementWorkOrdersAPI.Controllers
 
                             await _userManager.AddToRoleAsync(applicationUser, "admin");
                         }
-                        else if(registerDTO.UserType.ToLower() == "viewer")
+                        else
                         {
                             if (await _roleManager.FindByNameAsync("viewer") is null)
                             {
@@ -128,6 +132,75 @@ namespace ManagementWorkOrdersAPI.Controllers
                 return BadRequest("Invalid Email or Password");
             }
 
+            return BadRequest(ModelState);
+        }
+
+        [Authorize]
+        [HttpPost("ChangePassword")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDTO changePasswordDTO)
+        {
+            if(ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+
+                if(user == null)
+                {
+                    return Unauthorized();
+                }
+
+                var result = await _userManager.ChangePasswordAsync(user, changePasswordDTO.CurrentPassword, changePasswordDTO.NewPassword);
+
+                if (result.Succeeded)
+                {
+                    return Ok(new { Message = "Password changed successfully!" });
+                }
+                return BadRequest(result.Errors);
+            }
+            return BadRequest(ModelState);
+        }
+
+        [HttpPost("ForgetPassword")]
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordDTO forgetPasswordDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(forgetPasswordDTO.Email);
+
+                if (user == null)
+                {
+                    return BadRequest("User Not Found");
+                }
+
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                // Send email
+                _emailSender.SendEmail("Password Reset", forgetPasswordDTO.Email,token);
+
+                return Ok(new { message = "Password reset link has been sent to your email." });
+            }
+            return BadRequest(ModelState);
+        }
+
+        [HttpPost("ResetPassword")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDTO resetPasswordDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(resetPasswordDTO.Email);
+
+                if(user == null)
+                {
+                    return BadRequest("User Not Found");
+                }
+
+                var result = await _userManager.ResetPasswordAsync(user, resetPasswordDTO.Token, resetPasswordDTO.NewPassword);
+
+                if (result.Succeeded)
+                {
+                    return Ok(new { message = "Password has been reset successfully!" });
+                }
+                return BadRequest(result.Errors);
+            }
             return BadRequest(ModelState);
         }
 

@@ -57,6 +57,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(option => option.UseSqlServe
 
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IJWTService, JWTService>();
+builder.Services.AddTransient<EmailSender>();
 
 // Add Localization services
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");

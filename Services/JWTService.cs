@@ -27,7 +27,7 @@ public class JWTService : IJWTService
 
         var claims = new List<Claim>();
         claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
-        claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Email));
+        claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
         claims.Add(new Claim(ClaimTypes.Name, user.PersonName));
         claims.Add(new Claim(ClaimTypes.Email, user.Email));
 
